@@ -34,7 +34,6 @@ export function Moviedetails() {
 
   return (
     <div className="movie-details">
-      {/* <p>{Details.genres[0].name} </p>  */}
       <img className="image" src={IMG_URL + Details.backdrop_path} alt="picturews"></img>
       <div className="title">{Details.title}</div>
       <div className="overview"><b>overview : </b>{Details.overview}</div>

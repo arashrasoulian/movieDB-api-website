@@ -12,7 +12,7 @@ export function Header() {
           <Link to="/">home</Link>
         </li>
         <li><Link to="/year">movie 2022</Link></li>
-        <li>movie trailers</li>
+        <li> <Link to="/trailers">movie trailers</Link></li>
         <li>about</li>
         <li>write for us    </li> 
       </ul>

@@ -8,6 +8,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { Moviedetails } from "./component/moviedetails";
 import { Home } from "./component/home";
 import { Year } from "./component/Year";
+import { Trailers } from "./component/TRailers";
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
           <Route path="/" element={<Home />}></Route>
           <Route path="/:id" element={<Moviedetails />}></Route>
           <Route path="/year" element={<Year />}></Route>
+          <Route path="/trailers" element={<Trailers/>}></Route>
         </Routes>
 
         <div>
