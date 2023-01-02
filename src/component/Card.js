@@ -11,7 +11,7 @@ export function Card(prop) {
   const IMG_URL = "https://image.tmdb.org/t/p/w500";
   return (
     <div>
-      <div className="each-card">
+      <div className="each-card">console.log("not in efect", movieTrailers)
         <img
           className="image"
           src={

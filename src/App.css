@@ -223,3 +223,15 @@
   cursor: pointer;
   color: rgb(235, 238, 243);
 }
+/* ********* modal ***** */
+
+.modal_container{
+  position: fixed;
+  top:10%;
+  left:20%;
+}
+
+.movie-modal{
+  height: calc((50vw/16)*9);
+width: 50vw;
+}
