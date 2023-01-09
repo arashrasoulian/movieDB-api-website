@@ -1,57 +1,158 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import { Card } from "../component/Card";
+import { Cardvertical } from "../component/Card";
 import { Cardhorizental } from "./Cardhorizental";
-
+import { article } from "./articles";
+import { CardTop } from "./CardTop";
+import { Button, Card, CardGroup, Container, Row } from "react-bootstrap";
 export function Home() {
   const API_KEY = "api_key=1cf50e6248dc270629e802686245c2c8";
   const BASE_URL = "https://api.themoviedb.org/3";
   const API_URL =
     BASE_URL + "/discover/movie?sort_by=popularity.desc&" + API_KEY;
-
+  const COMEDY_API = `https://api.themoviedb.org/3/discover/movie?${API_KEY}&with_genres=35`;
   const requestUpcoming = `https://api.themoviedb.org/3/movie/upcoming?${API_KEY}&language=en-US&page=1`;
 
   function getDatapopular() {
     fetch(requestUpcoming)
       .then((data) => data.json())
       .then((data) => setLatestmovie(data.results));
-
+  }
+  function getPopularComedy() {
+    fetch(COMEDY_API)
+      .then((data) => data.json())
+      .then((data) => setComedylist(data.results));
   }
 
   const [pictures, setPictures] = useState([]);
   const [latestmovie, setLatestmovie] = useState([]);
-  // const [firstthreepictures, setFirstthreepictures] = useState([]);
+  const [RandomNumbers, setRandomNumbers] = useState([]);
+
+  const [comedyRandomNamber, setComedyRandomNumber] = useState([]);
+  const [comedylist, setComedylist] = useState([]);
 
   useEffect(() => {
     fetch(API_URL)
       .then((data) => data.json())
       .then((data) => setPictures(data.results));
-      console.log(latestmovie);
-
-  }, [API_URL]);  
-
+  }, [API_URL]);
 
   useEffect(() => {
     getDatapopular();
-
+    getPopularComedy();
+    setRandomNumbers(getrandomNumber(5, 3));
+    setComedyRandomNumber(getrandomNumber(20, 3));
   }, []);
 
-    
+  function getrandomNumber(till = 5, amount = 3) {
+    let array = [];
+    let y = 0;
+    while (array.length <= amount - 1) {
+      y = Math.floor(Math.random() * till);
+      if (array.indexOf(y) === -1) {
+        array.push(y);
+      }
+    }
+    return array;
+    console.log("my array", array);
+  }
 
   return (
-    <div className="home-body">
-     <div className="titles">popular</div>
-        <div className="card-total">
+    <div className="container  home-body">
+      {/* <Button onClick={() => console.log(pictures)}>test</Button> */}
+
+      <Row>
+        <div className="row d-flex flex-row flex-nowrap  overflow-hidden">
+          {RandomNumbers.map((item, index) => {
+            return (
+              <CardGroup
+                key={`${index} + ${item}`}
+                className="col-lg-4  col-md-6 container-fluid "
+              >
+                <CardTop
+                  cardImage={article[item].picture}
+                  cardTitle={article[item].title}
+                  cardSubject={article[item].subject}
+                ></CardTop>
+              </CardGroup>
+            );
+          })}
+        </div>
+      </Row>
+
+      <div className="titles">popular</div>
+      <div className="container-fluid py-2">
+        <Row className="d-flex flex-row flex-nowrap  overflow-hidden">
           {pictures.map((item, index) => {
-            return <Card className="card-component" key={index} prop={item} />;
+            return (
+              <CardGroup className="col-xl-2 col-md-4 col-sm-6 me-1rem ">
+                  <Cardvertical
+                    key={index}
+                    movieId={item.id}
+                    backdrop_path={item.backdrop_path}
+                    title={item.title}
+                    vote_average={item.vote_average}
+                    vote_count={item.vote_count}
+                    release_date={item.release_date}
+                  />
+                
+              </CardGroup>
+            );
           })}
-        </div>
-        <div className="titles">upcoming</div>
-        <div className="card-total-horizental">
+        </Row>
+      </div>
+
+      <div className="titles">upcoming</div>
+      <Row>
+        <div className="col-md-8">
           {latestmovie.map((item, index) => {
-            return <Cardhorizental key={index} prop={item} />;
+            return (
+              <div className="mb-5">
+                <Cardhorizental
+                  key={index}
+                  movieId={item.id}
+                  backdrop_path={item.backdrop_path}
+                  title={item.title}
+                  vote_average={item.vote_average}
+                  vote_count={item.vote_count}
+                  release_date={item.release_date}
+                  overview={item.overview}
+                />
+                <div className="hrcard-style">
+                  <hr></hr>
+                </div>
+              </div>
+            );
           })}
         </div>
+
+        <div className="col-md-4 ">
+          <div className=" sticky-top">
+            <div className="titles">popular comedy</div>
+
+            {comedylist.map((item, index) => {
+              return (
+                <div>
+                  <CardGroup>
+                    {comedyRandomNamber.indexOf(index) != -1 && (
+                      <Cardhorizental
+                        key={index}
+                        movieId={item.id}
+                        backdrop_path={item.backdrop_path}
+                        title={item.title}
+                        vote_average={item.vote_average}
+                        vote_count={item.vote_count}
+                        release_date={item.release_date}
+                        overview={""}
+                      />
+                    )}
+                  </CardGroup>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      </Row>
     </div>
   );
 }

@@ -1,4 +1,4 @@
-.navbar-style {
+/* .navbar-style {
   display: flex;
   flex-direction: row;
   background-color: rgb(16, 16, 39);
@@ -30,7 +30,7 @@
   margin: 10px;
   border-radius: 5%;
   align-items: flex-end;
-}
+} */
 /* ****** first row */
 .home-body {
   background-color: rgb(20, 18, 27);
@@ -40,14 +40,14 @@
   padding-top: 20px;
 }
 
-.home-body > .titles {
+.titles {
   text-decoration: underline 5px red;
   margin-left: 5.5%;
   font-size: 40px;
   color: rgb(130, 132, 134);
   padding-top: 30px;
 }
-
+/* 
 .card-total {
   display: flex;
   flex-direction: row;
@@ -89,7 +89,7 @@
   color: rgb(12, 131, 72);
   font-size: 15px;
   font-weight: bold;
-}
+} */
 .vote_average > b {
   color: rgb(34, 30, 71);
 }
@@ -235,3 +235,30 @@
   height: calc((50vw/16)*9);
 width: 50vw;
 }
+
+
+
+
+/* ***** card horizental bootstrap */
+.card-Background{
+  background-color: rgb(20, 18, 27);
+}
+.hrcard-style{
+  
+    display: block;
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+    margin-left: auto;
+    margin-right: auto;
+    
+    color:rgb(82, 84, 84);
+  }
+  .icon-white{
+    color:white;
+  }
+  .icon-dark{
+    color:black
+  }
+  .icon-dark:hover{
+    color:blue
+  }

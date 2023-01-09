@@ -14,15 +14,12 @@ export function Trailers() {
 
   const [movieTrailers, setMovietrailers] = useState([]);
   const [showyoutube, setShowyoutube] = useState(false);
-const [movieID ,setMovieID] = useState(0)
+  const [movieID, setMovieID] = useState(0);
   useEffect(() => {
     fetch(test)
       .then((data) => data.json())
       .then((data) => setMovietrailers(data.results));
   }, [API_URL_Trailers]);
-
-
- 
 
   return (
     <div className="home-body">
@@ -35,16 +32,33 @@ const [movieID ,setMovieID] = useState(0)
         {movieTrailers.map((item, index) => {
           return (
             <div>
-              <Cardhorizental key={index} prop={item} />
-              <button onClick={() => {setShowyoutube(!showyoutube); setMovieID(item.id)}}>show Trailers</button>
-
+              <Cardhorizental
+                key={index}
+                movieId={item.id}
+                backdrop_path={item.backdrop_path}
+                title={item.title}
+                vote_average={item.vote_average}
+                vote_count={item.vote_count}
+                release_date={item.release_date}
+                overview={item.overview}
+              />
+              <button
+                onClick={() => {
+                  setShowyoutube(!showyoutube);
+                  setMovieID(item.id);
+                }}
+              >
+                show Trailers
+              </button>
             </div>
           );
         })}
-        
-                  <Youtube show={showyoutube} movieID={movieID} onClose ={() => setShowyoutube(false)}/>
 
-       
+        <Youtube
+          show={showyoutube}
+          movieID={movieID}
+          onClose={() => setShowyoutube(false)}
+        />
       </div>
     </div>
   );

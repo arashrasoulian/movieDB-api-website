@@ -17,25 +17,24 @@ export function Year() {
   function getYearData(yearInFunction) {
     setYearInApi(yearInFunction);
 
-  
     let array = [];
     for (let i = 0; i < 5; i++) {
       array[i] = yearInFunction - 2 + i;
     }
     setSelectyear(array);
-    console.log(yearInFunction , "year:",yearInAPI );
+    console.log(yearInFunction, "year:", yearInAPI);
   }
 
   useEffect(() => {
     fetch(API_URL_YEAR)
-    .then((data) => data.json())
-    .then((data) => setMovieyear(data.results));
+      .then((data) => data.json())
+      .then((data) => setMovieyear(data.results));
   }, [yearInAPI]);
 
   return (
     <div className="home-body">
       <ul className="year-select">
-        <li onClick={()=> getYearData(selectyear[0])}>{selectyear[0]} </li>
+        <li onClick={() => getYearData(selectyear[0])}>{selectyear[0]} </li>
         <li onClick={() => getYearData(selectyear[1])}>{selectyear[1]} </li>
         <li
           onClick={() => getYearData(selectyear[2])}
@@ -50,7 +49,18 @@ export function Year() {
       <div className="card-total-horizental">
         {movieYear.map((item, index) => {
           if (item.backdrop_path) {
-            return <Cardhorizental key={index} prop={item} />;
+            return (
+              <Cardhorizental
+                key={index}
+                movieId={item.id}
+                backdrop_path={item.backdrop_path}
+                title={item.title}
+                vote_average={item.vote_average}
+                vote_count={item.vote_count}
+                release_date={item.release_date}
+                overview={item.overview}
+              />
+            );
           }
         })}
       </div>
