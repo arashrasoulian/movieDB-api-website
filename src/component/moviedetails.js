@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Container } from "react-bootstrap";
 import { useParams } from "react-router-dom";
 
 export function Moviedetails() {
@@ -47,9 +48,11 @@ export function Moviedetails() {
   }, []);
 
   return (
-    <div className="movie-details">
+    <Container className="container-fluid">
+
+    <div className=" movie-details ">
       <img
-        className="image"
+        className="image col-12 "
         src={IMG_URL + Details.backdrop_path}
         alt="picturews"
       ></img>
@@ -70,5 +73,7 @@ export function Moviedetails() {
       </div>
       <button>more review</button>
     </div>
+    </Container>
+
   );
 }

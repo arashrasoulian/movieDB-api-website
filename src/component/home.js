@@ -42,7 +42,7 @@ export function Home() {
     getPopularComedy();
     setRandomNumbers(getrandomNumber(5, 3));
     setComedyRandomNumber(getrandomNumber(20, 3));
-  }, []);
+  }, [COMEDY_API]);
 
   function getrandomNumber(till = 5, amount = 3) {
     let array = [];
@@ -54,12 +54,10 @@ export function Home() {
       }
     }
     return array;
-    console.log("my array", array);
   }
 
   return (
     <div className="container  home-body">
-      {/* <Button onClick={() => console.log(pictures)}>test</Button> */}
 
       <Row>
         <div className="row d-flex flex-row flex-nowrap  overflow-hidden">
@@ -67,7 +65,7 @@ export function Home() {
             return (
               <CardGroup
                 key={`${index} + ${item}`}
-                className="col-lg-4  col-md-6 container-fluid  "
+                className="col-xl-4  col-lg-6 container-fluid  "
               >
                 <Card className="bg-dark text-white">
                   <div className="testfor">
@@ -96,12 +94,12 @@ export function Home() {
         <Row className="d-flex flex-row flex-nowrap  overflow-hidden">
           {pictures.map((item, index) => {
             return (
-              <CardGroup className="col-xl-2 col-md-4 col-sm-6 me-1rem ">
+              <CardGroup className="col-xl-3 col-lg-4 col-md-6 me-1rem ">
                 <Cardvertical
                   key={index}
                   movieId={item.id}
                   backdrop_path={item.backdrop_path}
-                  title={item.title}
+                  title={item.overview}
                   vote_average={item.vote_average}
                   vote_count={item.vote_count}
                   release_date={item.release_date}
@@ -138,7 +136,7 @@ export function Home() {
 
         <div className="col-lg-4 col-md-12 ">
           <div className=" sticky-top ">
-            <span className="titles">popularcomedy</span>
+            <span className="titles">popular comedy</span>
 
             {comedylist.map((item, index) => {
               return (
@@ -150,9 +148,9 @@ export function Home() {
                         movieId={item.id}
                         backdrop_path={item.backdrop_path}
                         title={item.title}
-                        vote_average={item.vote_average}
-                        vote_count={item.vote_count}
-                        release_date={item.release_date}
+                        vote_average={""}
+                        vote_count={""}
+                        release_date={""}
                         overview={""}
                       />
                     )}

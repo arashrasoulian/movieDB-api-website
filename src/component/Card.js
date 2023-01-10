@@ -20,9 +20,9 @@ export function Cardvertical({
 
 
 function makeFiftystring(string){
-  if (string.length > 40){
+  if (string.length > 68){
    
-    string = string.substring(0,36) +"..." 
+    string = string.substring(0,64) +"..." 
   }
   return string
 }
@@ -30,7 +30,7 @@ function makeFiftystring(string){
 
   return (
     <Card
-      className=" border-0 bg-transparent"
+      className=" border-0 bg-transparent vertical-card-size"
       variant="dark"
       text="white"
       onClick={handleClick}
@@ -38,10 +38,11 @@ function makeFiftystring(string){
         <Card.Img variant="top" src={`${IMG_URL + backdrop_path}`} />
         <Card.Body>
           <Card.Title className="h-40">{makeFiftystring(title)}</Card.Title>
-          <Card.Text>release_date : {release_date}</Card.Text>
         <Card.Text>
-          <small className="text-muted">
-            vote : {vote_average} from {vote_count} votes
+          <small> vote : {vote_average} </small>
+          <small className="text-muted ms-4 ">
+          release : {release_date} 
+             
           </small>
         </Card.Text>
         </Card.Body>

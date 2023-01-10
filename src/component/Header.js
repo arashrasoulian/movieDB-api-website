@@ -15,8 +15,8 @@ export function Header() {
   const [show, setShow] = useState(false);
 
   return (
-    <>
-      <Navbar bg="dark" variant="dark" expand="lg">
+  
+      <Navbar bg="dark" variant="dark" expand="lg" >
         <Container className="py-2">
           <Navbar.Brand href="/">
             <img
@@ -161,7 +161,7 @@ export function Header() {
           </Navbar.Collapse>
         </Container>
       </Navbar>
-    </>
+    
   );
 }
 

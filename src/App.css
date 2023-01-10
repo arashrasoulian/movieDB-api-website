@@ -54,12 +54,15 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  
+ 
 }
 
 .movie-details > .image {
-  width: 1000px;
-  justify-content: center;
-  padding: 40px;
+  /* width: 60% ;
+  height: auto; */
+  
+  /* justify-content: center; */
 }
 .movie-details > .title {
   font-size: 30px;
@@ -68,7 +71,6 @@
 .movie-details > .overview {
   padding: 30px;
   color: white;
-  width: 700px;
 }
 .movie-details > .release_date {
   color: white;
@@ -172,3 +174,8 @@
 .testol{
   margin-top: -10px !important;
 }
+.font-horizentalcard-overview{
+  font-size: 13px !important;
+}
+
+

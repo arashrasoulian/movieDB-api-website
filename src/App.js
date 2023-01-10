@@ -13,7 +13,7 @@ function App() {
   return (
     <>
       <BrowserRouter>
-        <div className="container-lg-fluid card-Background">
+        <div className="container-fluid card-Background">
           <header>
             <Header />
           </header>

@@ -36,16 +36,23 @@ export function Cardhorizental({
           <Card.Body>
             <Card.Title className=" testol">{title}</Card.Title>
             {overview.length > 0 && (
-              <Card.Text>
+              <Card.Text className="font-horizentalcard-overview">
                 {overview.substring(0, 180)}...
                 <small className="text-muted"> more</small>
               </Card.Text>
             )}
 
-            <small className="text-muted">
-              release_date : {release_date}
-              vote : {vote_average} from {vote_count} votes
-            </small>
+            {release_date && (
+              <small className=" font-horizentalcard-release-date">
+                <span >
+                  vote : {vote_average} over {vote_count} votes
+                </span>
+
+                <span className="text-muted ms-4">
+                  release_date : {release_date}{" "}
+                </span>
+              </small>
+            )}
           </Card.Body>
         </div>
       </div>
