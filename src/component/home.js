@@ -67,13 +67,24 @@ export function Home() {
             return (
               <CardGroup
                 key={`${index} + ${item}`}
-                className="col-lg-4  col-md-6 container-fluid "
+                className="col-lg-4  col-md-6 container-fluid  "
               >
-                <CardTop
-                  cardImage={article[item].picture}
-                  cardTitle={article[item].title}
-                  cardSubject={article[item].subject}
-                ></CardTop>
+                <Card className="bg-dark text-white">
+                  <div className="testfor">
+                    <Card.Img
+                      src={`${article[item].picture}`}
+                      className="card-top-image"
+                    ></Card.Img>
+                  </div>
+                  <Card.ImgOverlay className="card-title-cont">
+                      <Card.Text>
+                        <span className=" card-top-subject">
+                          {article[item].subject}
+                        </span>
+                      </Card.Text>
+                      <Card.Text>{article[item].title}</Card.Text>
+                  </Card.ImgOverlay>
+                </Card>
               </CardGroup>
             );
           })}
@@ -86,16 +97,15 @@ export function Home() {
           {pictures.map((item, index) => {
             return (
               <CardGroup className="col-xl-2 col-md-4 col-sm-6 me-1rem ">
-                  <Cardvertical
-                    key={index}
-                    movieId={item.id}
-                    backdrop_path={item.backdrop_path}
-                    title={item.title}
-                    vote_average={item.vote_average}
-                    vote_count={item.vote_count}
-                    release_date={item.release_date}
-                  />
-                
+                <Cardvertical
+                  key={index}
+                  movieId={item.id}
+                  backdrop_path={item.backdrop_path}
+                  title={item.title}
+                  vote_average={item.vote_average}
+                  vote_count={item.vote_count}
+                  release_date={item.release_date}
+                />
               </CardGroup>
             );
           })}
@@ -104,7 +114,7 @@ export function Home() {
 
       <div className="titles">upcoming</div>
       <Row>
-        <div className="col-md-8">
+        <div className="col-lg-8">
           {latestmovie.map((item, index) => {
             return (
               <div className="mb-5">
@@ -126,15 +136,15 @@ export function Home() {
           })}
         </div>
 
-        <div className="col-md-4 ">
-          <div className=" sticky-top">
-            <div className="titles">popular comedy</div>
+        <div className="col-lg-4 col-md-12 ">
+          <div className=" sticky-top ">
+            <span className="titles">popularcomedy</span>
 
             {comedylist.map((item, index) => {
               return (
                 <div>
                   <CardGroup>
-                    {comedyRandomNamber.indexOf(index) != -1 && (
+                    {comedyRandomNamber.indexOf(index) !== -1 && (
                       <Cardhorizental
                         key={index}
                         movieId={item.id}

@@ -22,16 +22,24 @@ export function Cardhorizental({
   const IMG_URL = "https://image.tmdb.org/t/p/w500";
 
   return (
-    <Card  variant="dark" text="white" className="border-0" onClick={handleClick}>
-      <div className="row g-0 card-Background">
-        <div className="col-md-4">
+    <Card
+      variant="dark"
+      text="white"
+      className="border-0 my-4"
+      onClick={handleClick}
+    >
+      <div className="row g-0 card-Background ">
+        <div className="col-md-4 me-2">
           <Card.Img variant="top" src={`${IMG_URL + backdrop_path}`} />
         </div>
-        <div className="col-md-8">
+        <div className="col-md-7">
           <Card.Body>
-            <Card.Title>{title}</Card.Title>
+            <Card.Title className=" testol">{title}</Card.Title>
             {overview.length > 0 && (
-              <Card.Text>{overview.substring(0, 200)}</Card.Text>
+              <Card.Text>
+                {overview.substring(0, 180)}...
+                <small className="text-muted"> more</small>
+              </Card.Text>
             )}
 
             <small className="text-muted">
