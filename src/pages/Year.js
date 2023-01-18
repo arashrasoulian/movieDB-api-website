@@ -1,11 +1,12 @@
 import React, { useEffect } from "react";
 import { useState } from "react";
-import { Cardhorizental } from "./Cardhorizental";
+import { Cardhorizental } from "../component/Cards";
 
 export function Year() {
   const [yearInAPI, setYearInApi] = useState(2022);
   const [movieYear, setMovieyear] = useState([]);
   const [selectyear, setSelectyear] = useState([2020, 2021, 2022, 2023, 2024]);
+  const [windowWidth, setWindowwidth] = useState(true);
 
   const API_KEY = "api_key=1cf50e6248dc270629e802686245c2c8";
   const BASE_URL = "https://api.themoviedb.org/3";
@@ -22,7 +23,6 @@ export function Year() {
       array[i] = yearInFunction - 2 + i;
     }
     setSelectyear(array);
-    console.log(yearInFunction, "year:", yearInAPI);
   }
 
   useEffect(() => {
@@ -31,10 +31,24 @@ export function Year() {
       .then((data) => setMovieyear(data.results));
   }, [yearInAPI]);
 
+  // **** for test
+
+  useEffect(() => {
+    function handleResize() {
+      if (window.innerWidth < 700) {
+        setWindowwidth(false);
+      } else {
+        setWindowwidth(true);
+      }
+    }
+    window.addEventListener("resize", handleResize);
+  });
   return (
-    <div className="home-body">
-      <ul className="year-select">
-        <li onClick={() => getYearData(selectyear[0])}>{selectyear[0]} </li>
+    <div  centerd className="container home-body">
+      <ul className="   year-select">
+        {windowWidth && (
+          <li  onClick={() => getYearData(selectyear[0])}>{selectyear[0]} </li>
+        )}
         <li onClick={() => getYearData(selectyear[1])}>{selectyear[1]} </li>
         <li
           onClick={() => getYearData(selectyear[2])}
@@ -43,23 +57,27 @@ export function Year() {
           {selectyear[2]}
         </li>
         <li onClick={() => getYearData(selectyear[3])}>{selectyear[3]} </li>
-        <li onClick={() => getYearData(selectyear[4])}>{selectyear[4]} </li>
+        {windowWidth && (
+          <li onClick={() => getYearData(selectyear[4])}>{selectyear[4]} </li>
+        )}
       </ul>
       <div className="titles">year : {yearInAPI}</div>
       <div className="card-total-horizental">
         {movieYear.map((item, index) => {
           if (item.backdrop_path) {
             return (
-              <Cardhorizental
-                key={index}
-                movieId={item.id}
-                backdrop_path={item.backdrop_path}
-                title={item.title}
-                vote_average={item.vote_average}
-                vote_count={item.vote_count}
-                release_date={item.release_date}
-                overview={item.overview}
-              />
+              <div className="my-4">
+                <Cardhorizental
+                  key={index}
+                  movieId={item.id}
+                  backdrop_path={item.backdrop_path}
+                  title={item.title}
+                  vote_average={item.vote_average}
+                  vote_count={item.vote_count}
+                  release_date={item.release_date}
+                  overview={item.overview}
+                />
+              </div>
             );
           }
         })}

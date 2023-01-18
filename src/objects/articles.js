@@ -7,7 +7,7 @@ export const article = [
     title:
       "BAFTA Longlist: All Quiet on the Western Front& The Banshees of Inisherin Lead the Nominations",
     picture: "/image/baftas.avif",
-    taxt: `The BAFTA 2023 longlist is here, 
+    text: `The BAFTA 2023 longlist is here, 
    and the Netflix anti-war movie All Quiet on the Western Front leads the way with 15 nominations alongside director Martin McDonagh’s black comedy,
     The Banshees of Inisherin, which trails just behind at 14.
     Both have been nominated for the BAFTA for Best Film,

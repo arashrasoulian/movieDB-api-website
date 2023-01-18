@@ -3,18 +3,19 @@ import "./component/component-style.css";
 import { Header } from "./component/Header";
 import { Footer } from "./component/Footer";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import { Moviedetails } from "./component/moviedetails";
-import { Home } from "./component/home";
-import { Year } from "./component/Year";
-import { Trailers } from "./component/TRailers";
-import { article } from "./component/articles";
+import { Moviedetails } from "./pages/moviedetails";
+import { Home } from "./pages/home";
+import { Year } from "./pages/Year";
+import { Trailers } from "./pages/TRailers";
+import { ArticleDetails} from "./pages/ArticleDetails";
+import { Trailer } from "./pages/Youtube";
 
 function App() {
   return (
     <>
       <BrowserRouter>
         <div className="container-fluid card-Background">
-          <header>
+          <header >
             <Header />
           </header>
           <Routes>
@@ -22,7 +23,8 @@ function App() {
             <Route path="/:id" element={<Moviedetails />}></Route>
             <Route path="/year" element={<Year />}></Route>
             <Route path="/trailers" element={<Trailers />}></Route>
-            <Route path={`/article/:title`}></Route>
+            <Route path="/article/:id" element={<ArticleDetails />}></Route>
+            <Route path = "/trailers/:id" element={<Trailer/>}></Route>
           </Routes>
 
           <div>

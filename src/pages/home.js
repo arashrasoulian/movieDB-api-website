@@ -1,25 +1,19 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import { Cardvertical } from "../component/Card";
-import { Cardhorizental } from "./Cardhorizental";
-import { article } from "./articles";
-import { CardTop } from "./CardTop";
-import { Button, Card, CardGroup, Container, Row } from "react-bootstrap";
+import { CardArticle, Cardvertical } from "../component/Cards";
+import { Cardhorizental } from "../component/Cards";
+import {  CardGroup, Row } from "react-bootstrap";
+import { ApiAddress } from "../objects/ApiAddress";
+
 export function Home() {
-  const API_KEY = "api_key=1cf50e6248dc270629e802686245c2c8";
-  const BASE_URL = "https://api.themoviedb.org/3";
-  const API_URL =
-    BASE_URL + "/discover/movie?sort_by=popularity.desc&" + API_KEY;
-  const COMEDY_API = `https://api.themoviedb.org/3/discover/movie?${API_KEY}&with_genres=35`;
-  const requestUpcoming = `https://api.themoviedb.org/3/movie/upcoming?${API_KEY}&language=en-US&page=1`;
 
   function getDatapopular() {
-    fetch(requestUpcoming)
+    fetch(ApiAddress.requestUpcoming)
       .then((data) => data.json())
       .then((data) => setLatestmovie(data.results));
   }
   function getPopularComedy() {
-    fetch(COMEDY_API)
+    fetch(ApiAddress.requestComedy)
       .then((data) => data.json())
       .then((data) => setComedylist(data.results));
   }
@@ -32,17 +26,17 @@ export function Home() {
   const [comedylist, setComedylist] = useState([]);
 
   useEffect(() => {
-    fetch(API_URL)
+    fetch(ApiAddress.requestPopular)
       .then((data) => data.json())
       .then((data) => setPictures(data.results));
-  }, [API_URL]);
+  }, [ApiAddress.requestPopular]);
 
   useEffect(() => {
     getDatapopular();
     getPopularComedy();
     setRandomNumbers(getrandomNumber(5, 3));
     setComedyRandomNumber(getrandomNumber(20, 3));
-  }, [COMEDY_API]);
+  }, [ApiAddress.requestComedy]);
 
   function getrandomNumber(till = 5, amount = 3) {
     let array = [];
@@ -57,8 +51,7 @@ export function Home() {
   }
 
   return (
-    <div className="container  home-body">
-
+    <div className="container  home-body mt-5">
       <Row>
         <div className="row d-flex flex-row flex-nowrap  overflow-hidden">
           {RandomNumbers.map((item, index) => {
@@ -67,34 +60,23 @@ export function Home() {
                 key={`${index} + ${item}`}
                 className="col-xl-4  col-lg-6 container-fluid  "
               >
-                <Card className="bg-dark text-white">
-                  <div className="testfor">
-                    <Card.Img
-                      src={`${article[item].picture}`}
-                      className="card-top-image"
-                    ></Card.Img>
-                  </div>
-                  <Card.ImgOverlay className="card-title-cont">
-                      <Card.Text>
-                        <span className=" card-top-subject">
-                          {article[item].subject}
-                        </span>
-                      </Card.Text>
-                      <Card.Text>{article[item].title}</Card.Text>
-                  </Card.ImgOverlay>
-                </Card>
+                <CardArticle
+               
+               item={item}>
+
+               </CardArticle>
               </CardGroup>
             );
           })}
         </div>
       </Row>
 
-      <div className="titles">popular</div>
-      <div className="container-fluid py-2">
+      <div className="container-fluid mt-md-5">
+        <div className="titles ">popular</div>
         <Row className="d-flex flex-row flex-nowrap  overflow-hidden">
           {pictures.map((item, index) => {
             return (
-              <CardGroup className="col-xl-3 col-lg-4 col-md-6 me-1rem ">
+              <CardGroup  key={item.id + index} className="col-xl-3 col-lg-4 col-md-6 me-1rem ">
                 <Cardvertical
                   key={index}
                   movieId={item.id}
@@ -109,13 +91,13 @@ export function Home() {
           })}
         </Row>
       </div>
+      <div className="row  mt-md-5">
+        <div className="col-lg-8 col-md-12">
+          <div className="titles">upcoming</div>
 
-      <div className="titles">upcoming</div>
-      <Row>
-        <div className="col-lg-8">
           {latestmovie.map((item, index) => {
             return (
-              <div className="mb-5">
+              <div className="">
                 <Cardhorizental
                   key={index}
                   movieId={item.id}
@@ -141,7 +123,7 @@ export function Home() {
             {comedylist.map((item, index) => {
               return (
                 <div>
-                  <CardGroup>
+                  <CardGroup className="mb-xl-1">
                     {comedyRandomNamber.indexOf(index) !== -1 && (
                       <Cardhorizental
                         key={index}
@@ -160,7 +142,7 @@ export function Home() {
             })}
           </div>
         </div>
-      </Row>
+      </div>
     </div>
   );
 }
