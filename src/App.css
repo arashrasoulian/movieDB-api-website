@@ -43,6 +43,26 @@
 
 /*        *******        body    *************8                     */
 
+/*                     spinner **************/
+.loading-spinner{
+  /* position: absolute; */
+  /* display: grid; */
+  justify-content: center;
+  align-items: center;
+  padding-top:20%;
+  padding-left: 30%;
+  background-color: rgb(20, 18, 27);
+width: 100%;
+height: calc(100vw);
+top: 0;
+left: 0;
+
+}
+.spinner{
+  width: 100px !important;
+  height: 100px !important;
+}
+
 /* ******        first row                     */
 .home-body {
   background-color: rgb(20, 18, 27);
@@ -104,6 +124,11 @@
   background-size: 100%;
   opacity: 0.3;
   /* position: fixed; */
+}
+.no-trailers{
+  text-align: center;
+  color: #f72210;
+  font-size: 30px;
 }
 
 .movie-details {
@@ -167,7 +192,7 @@
   color: rgb(235, 238, 243);
 }
 
-/* ***** card horizental bootstrap */
+/* *****  horizental cards bootstrap */
 .card-Background {
   background-color: rgb(20, 18, 27);
 }
@@ -214,6 +239,41 @@
 .testol {
   margin-top: -10px !important;
 }
+
+@media (min-width: 1000px) {
+  .trailercard-title {
+    font-size: 30px !important;
+    margin-top: -15px !important;
+
+  }
+}
+/* If the screen size is smaller than 1200px, set the font-size to 40px */
+@media (max-width: 999.98px) {
+  .trailercard-title{
+    font-size: 20px !important;
+    margin-top: -10px !important;
+
+  }
+}
+
+
+
+@media (min-width: 1000px) {
+  .trailercard-overview {
+    font-size: 15px !important;
+  }
+}
+@media (max-width: 999.98px) {
+  .trailercard-overview{
+    font-size: 10px !important;
+  }
+}
+
+
+
+
+
+
 .font-horizentalcard-overview {
   font-size: 13px !important;
 

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import {
   CardGroup,
   Container,
@@ -6,34 +6,24 @@ import {
   Nav,
   Navbar,
   NavDropdown,
-  
 } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { ApiAddress } from "../objects/ApiAddress";
 
 import { Searchcard } from "./Cards";
+import { useFetch } from "./useFetch";
 
 export function Header() {
-  const [show, setShow] = useState(false);
   const [searchletters, setSearchletters] = useState("");
-  const [searchResult, setSearchresult] = useState([]);
 
   const Endpoint = `https://api.themoviedb.org/3/search/movie?query=${searchletters}&${ApiAddress.API_KEY}`;
+
+  const [show, setShow] = useState(false);
+  const [searchResult] = useFetch(Endpoint);
 
   function getsearchletters(e) {
     setSearchletters(e.target.value);
   }
-
-  function getsearchdata() {
-    fetch(Endpoint)
-      .then((data) => data.json())
-      .then((data) => setSearchresult(data.results));
-  }
-  useEffect(() => {
-    getsearchdata();
-  }, [Endpoint]);
-  console.log(searchResult);
-
   return (
     <Navbar bg="dark" variant="dark" expand="lg">
       <Container className="py-1">
@@ -67,7 +57,6 @@ export function Header() {
             </Nav.Link>
           </Nav>
           <div className="d-flex navbar-search">
-
             <NavDropdown
               title={
                 <>
@@ -200,10 +189,11 @@ export function Header() {
                 </form>
               </Modal.Title>
               <Modal.Body className="mt-4" scrollable={false}>
-                {searchResult &&
-                  searchResult.map((item, index) => {
+                {searchResult.results &&
+                  searchResult.results.map((item, index) => {
                     return (
                       <CardGroup
+                        key={index + item}
                         className="container col-12 mt-2"
                         onClick={() => setShow(false)}
                       >
@@ -212,10 +202,6 @@ export function Header() {
                           movieId={item.id}
                           backdrop_path={item.backdrop_path}
                           title={item.title}
-                          vote_average={""}
-                          vote_count={""}
-                          release_date={""}
-                          overview={""}
                         />
                       </CardGroup>
                     );

@@ -1,19 +1,21 @@
 import React, { useEffect } from "react";
 import { useState } from "react";
+import { Spinner } from "react-bootstrap";
 import { Cardhorizental } from "../component/Cards";
+import { useFetch } from "../component/useFetch";
+import { ApiAddress } from "../objects/ApiAddress";
 
 export function Year() {
   const [yearInAPI, setYearInApi] = useState(2022);
-  const [movieYear, setMovieyear] = useState([]);
+
+
+  const API_URL_YEAR =
+    ApiAddress.BASE_URL +
+    `/discover/movie?primary_release_year=${yearInAPI}&sort_by=vote_average.desc&` +
+    ApiAddress.API_KEY;
+  const [movieYear, isloadingMovieyear] = useFetch(API_URL_YEAR);
   const [selectyear, setSelectyear] = useState([2020, 2021, 2022, 2023, 2024]);
   const [windowWidth, setWindowwidth] = useState(true);
-
-  const API_KEY = "api_key=1cf50e6248dc270629e802686245c2c8";
-  const BASE_URL = "https://api.themoviedb.org/3";
-  const API_URL_YEAR =
-    BASE_URL +
-    `/discover/movie?primary_release_year=${yearInAPI}&sort_by=vote_average.desc&` +
-    API_KEY;
 
   function getYearData(yearInFunction) {
     setYearInApi(yearInFunction);
@@ -25,13 +27,7 @@ export function Year() {
     setSelectyear(array);
   }
 
-  useEffect(() => {
-    fetch(API_URL_YEAR)
-      .then((data) => data.json())
-      .then((data) => setMovieyear(data.results));
-  }, [yearInAPI]);
-
-  // **** for test
+  // **** responsive**************
 
   useEffect(() => {
     function handleResize() {
@@ -44,10 +40,10 @@ export function Year() {
     window.addEventListener("resize", handleResize);
   });
   return (
-    <div  centerd className="container home-body">
+    <div centerd className="container home-body">
       <ul className="   year-select">
         {windowWidth && (
-          <li  onClick={() => getYearData(selectyear[0])}>{selectyear[0]} </li>
+          <li onClick={() => getYearData(selectyear[0])}>{selectyear[0]} </li>
         )}
         <li onClick={() => getYearData(selectyear[1])}>{selectyear[1]} </li>
         <li
@@ -63,24 +59,33 @@ export function Year() {
       </ul>
       <div className="titles">year : {yearInAPI}</div>
       <div className="card-total-horizental">
-        {movieYear.map((item, index) => {
-          if (item.backdrop_path) {
-            return (
-              <div className="my-4">
-                <Cardhorizental
-                  key={index}
-                  movieId={item.id}
-                  backdrop_path={item.backdrop_path}
-                  title={item.title}
-                  vote_average={item.vote_average}
-                  vote_count={item.vote_count}
-                  release_date={item.release_date}
-                  overview={item.overview}
-                />
-              </div>
-            );
-          }
-        })}
+        {!isloadingMovieyear ?
+          movieYear.results.map((item, index) => {
+            
+              return (
+                <div className="my-4">
+                  <Cardhorizental
+                    key={index}
+                    movieId={item.id}
+                    backdrop_path={item.backdrop_path }
+                    title={item.title}
+                    vote_average={item.vote_average}
+                    vote_count={item.vote_count}
+                    release_date={item.release_date}
+                    overview={item.overview}
+                  />
+                </div>
+              );
+            
+          }):
+          <div className="loading-spinner">
+          <Spinner
+            className="spinner"
+            animation="border"
+            size="xl"
+            variant="primary"
+          ></Spinner>
+        </div>}
       </div>
     </div>
   );

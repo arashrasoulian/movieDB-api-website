@@ -1,29 +1,22 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
+import { Spinner } from "react-bootstrap";
 import {  Trailerscard } from "../component/Cards";
+import { useFetch } from "../component/useFetch";
+import { ApiAddress } from "../objects/ApiAddress";
 
 export function Trailers() {
-  const API_KEY = "api_key=1cf50e6248dc270629e802686245c2c8";
+  
+  const [movieTrailers,isloading] = useFetch(ApiAddress.requestUpcoming);
 
-  const BASE_URL = "https://api.themoviedb.org/3";
-  const API_URL_Trailers =
-    BASE_URL + "/discover/movie?sort_by=popularity.desc&" + API_KEY;
-  const test = `https://api.themoviedb.org/3/movie/upcoming?${API_KEY}&append_to_response=videos`;
-
-  const [movieTrailers, setMovietrailers] = useState([]);
-
-  useEffect(() => {
-    fetch(test)
-      .then((data) => data.json())
-      .then((data) => setMovietrailers(data.results));
-  }, [API_URL_Trailers]);
+  
 
   return (
     <div className=" container home-body">
       <div className="titles">upcoming</div>
       <div className="card-total-horizental">
-        {movieTrailers.map((item, index) => {
+        {!isloading ? movieTrailers.results.map((item, index) => {
           return (
-            <div className="my-3">
+            <div className="my-4" key={index + "movietrailers"}>
               <Trailerscard
                 key={index}
                 movieId={item.id}
@@ -36,7 +29,14 @@ export function Trailers() {
               />
             </div>
           );
-        })}
+        }) :   <div className="loading-spinner">
+        <Spinner
+          className="spinner"
+          animation="border"
+          size="xl"
+          variant="primary"
+        ></Spinner>
+      </div>}
       </div>
     </div>
   );
