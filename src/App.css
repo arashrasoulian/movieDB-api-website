@@ -44,21 +44,18 @@
 /*        *******        body    *************8                     */
 
 /*                     spinner **************/
-.loading-spinner{
-  /* position: absolute; */
-  /* display: grid; */
+.loading-spinner {
   justify-content: center;
   align-items: center;
-  padding-top:20%;
-  padding-left: 30%;
+  padding-top: 20%;
+  padding-left: 44%;
   background-color: rgb(20, 18, 27);
-width: 100%;
-height: calc(100vw);
-top: 0;
-left: 0;
-
+  width: 100%;
+  height: calc(100vw);
+  top: 0;
+  left: 0;
 }
-.spinner{
+.spinner {
   width: 100px !important;
   height: 100px !important;
 }
@@ -84,7 +81,7 @@ left: 0;
   margin-left: 0;
 }
 .titles::after {
-  content: "s";
+  content: "";
   display: block;
   width: 64px;
   height: 5px;
@@ -123,16 +120,14 @@ left: 0;
   height: 400px;
   background-size: 100%;
   opacity: 0.3;
-  /* position: fixed; */
 }
-.no-trailers{
+.no-trailers {
   text-align: center;
   color: #f72210;
   font-size: 30px;
 }
 
 .movie-details {
-  /* background-color: rgb(20, 18, 27); */
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -147,10 +142,9 @@ left: 0;
 .movie-details > .release_date {
   padding: 30px;
 }
-.modal-trailer{
+.modal-trailer {
   width: 100%;
-  height:calc(500px * 9/16);
-
+  height: calc(500px * 9 / 16);
 }
 
 /* ********** year*********** */
@@ -196,6 +190,24 @@ left: 0;
 .card-Background {
   background-color: rgb(20, 18, 27);
 }
+
+/****** comedy card ***************/
+.comedycard-title {
+  margin-top: -15px !important;
+  margin-left: -20px !important;
+  margin-right: -20px !important;
+}
+@media (min-width: 1400px) {
+  .comedycard-title {
+    font-size: 20px !important;
+  }
+}
+@media (max-width: 1399.98px) {
+  .comedycard-title {
+    font-size: 15px !important;
+  }
+}
+
 .hrcard-style {
   display: block;
   margin-top: 0.5em;
@@ -244,19 +256,15 @@ left: 0;
   .trailercard-title {
     font-size: 30px !important;
     margin-top: -15px !important;
-
   }
 }
 /* If the screen size is smaller than 1200px, set the font-size to 40px */
 @media (max-width: 999.98px) {
-  .trailercard-title{
+  .trailercard-title {
     font-size: 20px !important;
     margin-top: -10px !important;
-
   }
 }
-
-
 
 @media (min-width: 1000px) {
   .trailercard-overview {
@@ -264,26 +272,18 @@ left: 0;
   }
 }
 @media (max-width: 999.98px) {
-  .trailercard-overview{
+  .trailercard-overview {
     font-size: 10px !important;
   }
 }
 
-
-
-
-
-
 .font-horizentalcard-overview {
   font-size: 13px !important;
-
 }
- /*********** movietrailer **********/
- 
- 
- .trailermovie{
-  width:100%;
-  height:min(calc(60vw * 9/16),60vw);
-  margin:0;
- }
+/*********** movietrailer **********/
 
+.trailermovie {
+  width: 100%;
+  height: min(calc(60vw * 9 / 16), 60vw);
+  margin: 0;
+}

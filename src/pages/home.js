@@ -1,6 +1,6 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import { CardArticle, Cardvertical } from "../component/Cards";
+import { CardArticle, Cardvertical, ComedyCard } from "../component/Cards";
 import { Cardhorizental } from "../component/Cards";
 import { CardGroup, Row, Spinner } from "react-bootstrap";
 import { ApiAddress } from "../objects/ApiAddress";
@@ -49,7 +49,7 @@ export function Home() {
               {RandomNumbers.map((item, index) => {
                 return (
                   <CardGroup
-                    key={`${index} + ${item}`}
+                    key={`${index} + ${item}+randomnumber`}
                     className="col-xl-4  col-lg-6 container-fluid  "
                   >
                     <CardArticle item={item}></CardArticle>
@@ -66,7 +66,7 @@ export function Home() {
                 popularmovie.results.map((item, index) => {
                   return (
                     <CardGroup
-                      key={item.id + index}
+                      key={item.id + index + "popular"}
                       className="col-xl-3 col-lg-4 col-md-6 me-1rem "
                     >
                       <Cardvertical
@@ -89,7 +89,7 @@ export function Home() {
 
               {latestmovie.results.map((item, index) => {
                 return (
-                  <div className="">
+                  <div className="" key={index+item.id}>
                     <Cardhorizental
                       key={index}
                       movieId={item.id}
@@ -115,18 +115,15 @@ export function Home() {
                 {!isloadingComedylist &&
                   comedylist.results.map((item, index) => {
                     return (
-                      <div key={"comedy" + index}>
-                        <CardGroup className="mb-xl-1">
+                      <div key={"comedy" + index + item.id}>
+                        <CardGroup >
                           {comedyRandomNamber.indexOf(index) !== -1 && (
-                            <Cardhorizental
+                            <ComedyCard
                               key={index}
                               movieId={item.id}
                               backdrop_path={item.backdrop_path}
                               title={item.title}
-                              vote_average={""}
-                              vote_count={""}
-                              release_date={""}
-                              overview={""}
+                              
                             />
                           )}
                         </CardGroup>

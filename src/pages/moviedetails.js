@@ -71,7 +71,7 @@ export function Moviedetails() {
                 <div>
                   <Button
                     className="my-4 opacity-10"
-                    variant="danger"
+                    variant="success"
                     onClick={showModal}
                   >
                     watch trailer

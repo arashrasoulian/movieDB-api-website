@@ -166,6 +166,48 @@ export function Searchcard({ movieId, backdrop_path, title }) {
   );
 }
 
+
+export function ComedyCard({ movieId, backdrop_path, title }) {
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    console.log(movieId);
+    navigate(`/${movieId}`);
+  };
+
+
+  return (
+    <Card
+      variant="dark"
+      text="white"
+      className="border-0 mb-3"
+
+      onClick={handleClick}
+    >
+      <div className="row   card-Background ">
+        <div className="col-5 ">
+          <Card.Img
+            variant="top"
+            src={`${
+              backdrop_path ? IMG_URL + backdrop_path : "/image/noImage.png"
+            }`}
+          />
+        </div>
+        <div className="col-7">
+          <Card.Body>
+            <Card.Title className="comedycard-title">
+              {title.length < 37 ? title : `${title.substring(0, 36)}...`}
+            </Card.Title>
+          </Card.Body>
+        </div>
+      </div>
+    </Card>
+  );
+}
+
+
+
+
 export function Trailerscard({
   movieId,
   backdrop_path,
