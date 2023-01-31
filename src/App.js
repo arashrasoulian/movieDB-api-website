@@ -7,15 +7,20 @@ import { Moviedetails } from "./pages/moviedetails";
 import { Home } from "./pages/home";
 import { Year } from "./pages/Year";
 import { Trailers } from "./pages/TRailers";
-import { ArticleDetails} from "./pages/ArticleDetails";
+import { ArticleDetails } from "./pages/ArticleDetails";
 import { Trailer } from "./pages/Youtube";
+import { useEffect } from "react";
 
 function App() {
+  useEffect(() => {
+    window.history.scrollRestoration = "manual";
+  }, []);
+
   return (
     <>
       <BrowserRouter>
         <div className="container-fluid card-Background">
-          <header >
+          <header>
             <Header />
           </header>
           <Routes>
@@ -24,7 +29,7 @@ function App() {
             <Route path="/year" element={<Year />}></Route>
             <Route path="/trailers" element={<Trailers />}></Route>
             <Route path="/article/:id" element={<ArticleDetails />}></Route>
-            <Route path = "/trailers/:id" element={<Trailer/>}></Route>
+            <Route path="/trailers/:id" element={<Trailer />}></Route>
           </Routes>
 
           <div>

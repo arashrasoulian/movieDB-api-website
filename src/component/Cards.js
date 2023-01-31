@@ -1,10 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import { Card } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 import { article } from "../objects/articles";
 
 const IMG_URL = "https://image.tmdb.org/t/p/w500";
-
 
 export function CardArticle({ item }) {
   const navigate = useNavigate();
@@ -45,7 +44,6 @@ export function Cardvertical({
   const handleClick = () => {
     navigate(`/${movieId}`);
   };
-
 
   function makeFiftystring(string) {
     if (string.length > 68) {
@@ -89,7 +87,6 @@ export function Cardhorizental({
     navigate(`/${movieId}`);
   };
 
-
   return (
     <Card
       variant="dark"
@@ -99,11 +96,16 @@ export function Cardhorizental({
     >
       <div className="row g-0 card-Background ">
         <div className="col-md-5 ">
-          <Card.Img variant="top" src={`${backdrop_path ? IMG_URL + backdrop_path : "/image/noImage.png"}`} />
+          <Card.Img
+            variant="top"
+            src={`${
+              backdrop_path ? IMG_URL + backdrop_path : "/image/noImage.png"
+            }`}
+          />
         </div>
         <div className="col-md-7">
-          <Card.Body>
-            <Card.Title className=" testol">{title}</Card.Title>
+          <Card.Body className="mt-md-0 mt-3">
+            <Card.Title className=" testol ">{title}</Card.Title>
             {overview.length > 0 && (
               <Card.Text className="font-horizentalcard-overview">
                 {overview.substring(0, 180)}...
@@ -137,7 +139,6 @@ export function Searchcard({ movieId, backdrop_path, title }) {
     navigate(`/${movieId}`);
   };
 
-
   return (
     <Card
       variant="white"
@@ -166,7 +167,6 @@ export function Searchcard({ movieId, backdrop_path, title }) {
   );
 }
 
-
 export function ComedyCard({ movieId, backdrop_path, title }) {
   const navigate = useNavigate();
 
@@ -175,13 +175,11 @@ export function ComedyCard({ movieId, backdrop_path, title }) {
     navigate(`/${movieId}`);
   };
 
-
   return (
     <Card
       variant="dark"
       text="white"
       className="border-0 mb-3"
-
       onClick={handleClick}
     >
       <div className="row   card-Background ">
@@ -205,9 +203,6 @@ export function ComedyCard({ movieId, backdrop_path, title }) {
   );
 }
 
-
-
-
 export function Trailerscard({
   movieId,
   backdrop_path,
@@ -218,30 +213,44 @@ export function Trailerscard({
   release_date,
 }) {
   const navigate = useNavigate();
-
+  const [overviewcharacter, setOverviewcharacter] = useState([165, "... more"]);
   const handleClick = () => {
     navigate(`/trailers/${movieId}`);
   };
 
+  function handelClickmore() {
+    if (overviewcharacter[0] === 165) {
+      setOverviewcharacter([1800, "less"]);
+    } else {
+      setOverviewcharacter([165, "...more"]);
+    }
+  }
 
   return (
-    <Card
-      variant="dark"
-      text="white"
-      className="border-0  "
-      onClick={handleClick}
-    >
+    <Card variant="dark" text="white" className="border-0  ">
       <div className="row g-0 card-Background ">
-        <div className="col-md-5 ">
-          <Card.Img variant="top" src={`${IMG_URL + backdrop_path}`} />
+        <div className="col-md-5  col-xl-3 col-lg-4">
+          <Card.Img
+            onClick={handleClick}
+            variant="top"
+            src={`${IMG_URL + backdrop_path}`}
+            className="image-trailercard"
+          />
         </div>
-        <div className="col-md-7">
+        <div className="col-md-7 col-lg-8">
           <Card.Body>
-            <Card.Title className=" trailercard-title ">{title}</Card.Title>
+            <Card.Title className=" trailercard-title " onClick={handleClick}>
+              {title.length > 39 ? `${title.substring(0, 39)}...` : `${title}`}
+            </Card.Title>
             {overview.length > 0 && (
               <Card.Text className="trailercard-overview my-4">
-                {overview.substring(0, 180)}...
-                <small className="text-muted"> more</small>
+                {overview.substring(0, overviewcharacter[0])}...
+                <small
+                  className="text-muted more-trailerscrad-preview"
+                  onClick={handelClickmore}
+                >
+                  {overviewcharacter[1]}
+                </small>
               </Card.Text>
             )}
 

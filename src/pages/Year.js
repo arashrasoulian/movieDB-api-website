@@ -72,7 +72,7 @@ export function Year() {
                 return (
                   <li
                     key={index + item +"3"}
-                    onClick={() => getYearData(selectyear[index])}
+                    onClick={() => getYearData(selectyear[index + 1])}
                   >
                     {item}
                   </li>
@@ -81,7 +81,7 @@ export function Year() {
                 return (
                   <li
                     key={index + item +"4"}
-                    onClick={() => getYearData(selectyear[index])}
+                    onClick={() => getYearData(selectyear[index+1])}
                     className="center-year-select"
                   >
                     {item}

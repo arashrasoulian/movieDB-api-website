@@ -10,10 +10,12 @@ export function Home() {
   const [latestmovie, isloadingLatest] = useFetch(ApiAddress.requestUpcoming);
   const [comedylist, isloadingComedylist] = useFetch(ApiAddress.requestComedy);
   const [popularmovie, isloadingPopular] = useFetch(ApiAddress.requestPopular);
-  
+
   const [RandomNumbers, setRandomNumbers] = useState([]);
   const [comedyRandomNamber, setComedyRandomNumber] = useState([]);
 
+  
+ 
   useEffect(() => {
     setRandomNumbers(getrandomNumber(5, 3));
     setComedyRandomNumber(getrandomNumber(20, 3));
@@ -32,9 +34,10 @@ export function Home() {
   }
 
   return (
-    <div className="container  home-body mt-5">
+    <div className="container  home-body mt-5 ">
       {isloadingLatest ? (
         <div className="loading-spinner">
+          
           <Spinner
             className="spinner"
             animation="border"
@@ -50,7 +53,7 @@ export function Home() {
                 return (
                   <CardGroup
                     key={`${index} + ${item}+randomnumber`}
-                    className="col-xl-4  col-lg-6 container-fluid  "
+                    className="col-xl-4  col-lg-6  "
                   >
                     <CardArticle item={item}></CardArticle>
                   </CardGroup>
@@ -59,8 +62,8 @@ export function Home() {
             </div>
           </Row>
 
-          <div className="container-fluid mt-md-5">
-            <div className="titles ">popular</div>
+          <div className=" mt-md-5">
+            <div className="titles">popular</div>
             <Row className="d-flex flex-row flex-nowrap  overflow-hidden">
               {!isloadingPopular &&
                 popularmovie.results.map((item, index) => {
@@ -89,7 +92,7 @@ export function Home() {
 
               {latestmovie.results.map((item, index) => {
                 return (
-                  <div className="" key={index+item.id}>
+                  <div className="" key={index + item.id}>
                     <Cardhorizental
                       key={index}
                       movieId={item.id}
@@ -116,14 +119,13 @@ export function Home() {
                   comedylist.results.map((item, index) => {
                     return (
                       <div key={"comedy" + index + item.id}>
-                        <CardGroup >
+                        <CardGroup>
                           {comedyRandomNamber.indexOf(index) !== -1 && (
                             <ComedyCard
                               key={index}
                               movieId={item.id}
                               backdrop_path={item.backdrop_path}
                               title={item.title}
-                              
                             />
                           )}
                         </CardGroup>

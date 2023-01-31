@@ -31,11 +31,13 @@ export function Trailer() {
           return featureArray.push([item.key, item.name]);
         }
       });
+      
       setmovieBHscene(BhArray);
       setmovietiser(teaserArray);
       console.log("test", BhArray, movieBHscene);
     }
   }, [isloadingMoviedetails]);
+ 
   console.log("teaser", movietiser, "BH", movieBHscene);
 
   return (

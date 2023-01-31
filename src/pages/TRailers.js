@@ -27,6 +27,7 @@ export function Trailers() {
                 release_date={item.release_date}
                 overview={item.overview}
               />
+              <hr className="hrcard-style my-4"></hr>
             </div>
           );
         }) :   <div className="loading-spinner">

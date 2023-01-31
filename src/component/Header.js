@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   CardGroup,
   Container,
@@ -6,6 +6,7 @@ import {
   Nav,
   Navbar,
   NavDropdown,
+  Spinner,
 } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { ApiAddress } from "../objects/ApiAddress";
@@ -19,11 +20,19 @@ export function Header() {
   const Endpoint = `https://api.themoviedb.org/3/search/movie?query=${searchletters}&${ApiAddress.API_KEY}`;
 
   const [show, setShow] = useState(false);
-  const [searchResult] = useFetch(Endpoint);
+  const [searchResult, isloadingSearchresult] = useFetch(
+    searchletters.length > 0 ? Endpoint : null
+  );
 
   function getsearchletters(e) {
     setSearchletters(e.target.value);
   }
+  useEffect(() => {
+    if (!show) {
+      setSearchletters("");
+    }
+  }, [show]);
+
   return (
     <Navbar bg="dark" variant="dark" expand="lg">
       <Container className="py-1">
@@ -188,24 +197,52 @@ export function Header() {
                   ></input>
                 </form>
               </Modal.Title>
-              <Modal.Body className="mt-4" scrollable={false}>
-                {searchResult.results &&
-                  searchResult.results.map((item, index) => {
-                    return (
-                      <CardGroup
-                        key={index + item}
-                        className="container col-12 mt-2"
-                        onClick={() => setShow(false)}
-                      >
-                        <Searchcard
-                          key={index}
-                          movieId={item.id}
-                          backdrop_path={item.backdrop_path}
-                          title={item.title}
-                        />
-                      </CardGroup>
-                    );
-                  })}
+              <Modal.Body className="mt-4 ">
+                {isloadingSearchresult ? (
+                  searchletters.length > 0 && (
+                    <div className="loading-spinner-search">
+          
+                    <Spinner
+                      className="spinner-search"
+                      animation="border"
+                      size="md"
+                      variant="primary"
+                    ></Spinner>
+                  </div>
+                  )
+                ) : (
+                  <div>
+                    {searchResult &&
+                      (searchResult.results.length > 0 ? (
+                        <div className="search-modal-body">
+                          {searchResult.results.map((item, index) => {
+                            return (
+                              <CardGroup
+                                key={index + item}
+                                className="container col-12 mt-2 "
+                                onClick={() => {
+                                  setShow(false);
+                                }}
+                              >
+                                <Searchcard
+                                  key={index}
+                                  movieId={item.id}
+                                  backdrop_path={item.backdrop_path}
+                                  title={item.title}
+                                />
+                              </CardGroup>
+                            );
+                          })}
+                        </div>
+                      ) : (
+                        <div className="text-center ">
+                          Sorry, but nothing matched your search of
+                          <b>{`"${searchletters}"`}</b>. Please try other
+                          keywords or check your spelling.
+                        </div>
+                      ))}
+                  </div>
+                )}
               </Modal.Body>
             </Modal>
           </div>

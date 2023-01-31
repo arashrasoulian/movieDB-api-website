@@ -56,7 +56,7 @@ export function Moviedetails() {
                 <b>genres :</b>
               </div>
               {details.genres
-                ? details.genres.slice(0, 4).map((item, index) => {
+                ? details.genres.slice(0, 3).map((item, index) => {
                     return (
                       <span
                         key={index + item}

@@ -31,17 +31,61 @@
   background-color: rgb(229, 228, 228) !important;
 }
 .input-search-modal > input {
+  font-size: 20px;
   border: 0;
   outline: 0;
   margin-top: 45px;
   margin-left: 10px;
-  height: 20px;
+  height: 30px;
 }
 .input-search-modal > input:focus {
   outline: none !important;
 }
+.search-modal-body{
+  height: 600px !important;
+  overflow-y: auto;
+}
+.search-modal-body::-webkit-scrollbar{
+  background-color: rgb(229, 228, 228);
+}
+
+search-modal-body::-webkit-scrollbar{
+  width: 5px;
+  background: rgb(20, 18, 27); 
+}
+.loading-spinner-search {
+  justify-content: center;
+  align-items: center;
+  padding-top: 20%;
+  padding-left: 44%;
+  background-color: white;
+  height: 600px !important;
+
+  
+  top: 0;
+  left: 0;
+}
+.spinner-search {
+  width: 50px !important;
+  height: 50px !important;
+}
+  
 
 /*        *******        body    *************8                     */
+
+::-webkit-scrollbar{
+  width: 5px;
+  background: rgb(20, 18, 27); 
+
+}
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px grey; 
+
+}
+ ::-webkit-scrollbar-thumb {
+  background: #888; 
+}
+
 
 /*                     spinner **************/
 .loading-spinner {
@@ -63,6 +107,7 @@
 /* ******        first row                     */
 .home-body {
   background-color: rgb(20, 18, 27);
+  
 }
 
 .titles {
@@ -87,30 +132,6 @@
   height: 5px;
   margin-top: 4px;
   background: #f72210;
-}
-
-/* ********* footer ************ */
-.footer-body {
-  display: flex;
-  flex-direction: row;
-  background-color: black;
-  height: 400px;
-  align-items: center;
-  justify-content: center;
-}
-.footer-body > ul {
-  display: flex;
-  flex-direction: row;
-}
-.footer-body > ul > li {
-  color: white;
-  list-style-type: none;
-  margin: 10px;
-}
-
-.footer-body > ul > li > img {
-  margin: 50px;
-  height: 50px;
 }
 
 /* *******movie details */
@@ -197,25 +218,26 @@
   margin-left: -20px !important;
   margin-right: -20px !important;
 }
-@media (min-width: 1400px) {
+@media (min-width: 1200px) {
   .comedycard-title {
     font-size: 20px !important;
   }
 }
-@media (max-width: 1399.98px) {
+@media (max-width: 1199.98px) {
   .comedycard-title {
     font-size: 15px !important;
   }
 }
 
 .hrcard-style {
+  
   display: block;
   margin-top: 0.5em;
   margin-bottom: 0.5em;
   margin-left: auto;
   margin-right: auto;
 
-  color: rgb(82, 84, 84);
+  color: rgb(146, 149, 149);
 }
 .icon-white {
   color: white;
@@ -249,7 +271,7 @@
   align-items: flex-start;
 }
 .testol {
-  margin-top: -10px !important;
+  margin-top: -17px !important;
 }
 
 @media (min-width: 1000px) {
@@ -286,4 +308,46 @@
   width: 100%;
   height: min(calc(60vw * 9 / 16), 60vw);
   margin: 0;
+}
+.image-trailercard{
+    cursor: pointer;
+}
+.image-trailercard:hover{
+      filter: brightness(1.5);
+
+}
+.more-trailerscrad-preview{
+}
+.trailercard-title{
+  cursor: pointer;
+}
+.trailercard-title:hover{
+  text-decoration: underline;
+  font-style: italic;
+}
+
+
+
+/* ********* footer ************ */
+.footer-body {
+  display: flex;
+  flex-direction: row;
+  background-color: black;
+  height: 400px;
+  align-items: center;
+  justify-content: center;
+}
+.footer-body > ul {
+  display: flex;
+  flex-direction: row;
+}
+.footer-body > ul > li {
+  color: white;
+  list-style-type: none;
+  margin: 10px;
+}
+
+.footer-body > ul > li > img {
+  margin: 50px;
+  height: 50px;
 }
