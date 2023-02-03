@@ -41,17 +41,17 @@
 .input-search-modal > input:focus {
   outline: none !important;
 }
-.search-modal-body{
+.search-modal-body {
   height: 600px !important;
   overflow-y: auto;
 }
-.search-modal-body::-webkit-scrollbar{
+.search-modal-body::-webkit-scrollbar {
   background-color: rgb(229, 228, 228);
 }
 
-search-modal-body::-webkit-scrollbar{
+search-modal-body::-webkit-scrollbar {
   width: 5px;
-  background: rgb(20, 18, 27); 
+  background: rgb(20, 18, 27);
 }
 .loading-spinner-search {
   justify-content: center;
@@ -61,7 +61,6 @@ search-modal-body::-webkit-scrollbar{
   background-color: white;
   height: 600px !important;
 
-  
   top: 0;
   left: 0;
 }
@@ -69,23 +68,19 @@ search-modal-body::-webkit-scrollbar{
   width: 50px !important;
   height: 50px !important;
 }
-  
 
 /*        *******        body    *************8                     */
 
-::-webkit-scrollbar{
+::-webkit-scrollbar {
   width: 5px;
-  background: rgb(20, 18, 27); 
-
+  background: rgb(20, 18, 27);
 }
 ::-webkit-scrollbar-track {
-  box-shadow: inset 0 0 5px grey; 
-
+  box-shadow: inset 0 0 5px grey;
 }
- ::-webkit-scrollbar-thumb {
-  background: #888; 
+::-webkit-scrollbar-thumb {
+  background: #888;
 }
-
 
 /*                     spinner **************/
 .loading-spinner {
@@ -107,7 +102,6 @@ search-modal-body::-webkit-scrollbar{
 /* ******        first row                     */
 .home-body {
   background-color: rgb(20, 18, 27);
-  
 }
 
 .titles {
@@ -230,7 +224,6 @@ search-modal-body::-webkit-scrollbar{
 }
 
 .hrcard-style {
-  
   display: block;
   margin-top: 0.5em;
   margin-bottom: 0.5em;
@@ -309,24 +302,26 @@ search-modal-body::-webkit-scrollbar{
   height: min(calc(60vw * 9 / 16), 60vw);
   margin: 0;
 }
-.image-trailercard{
-    cursor: pointer;
-}
-.image-trailercard:hover{
-      filter: brightness(1.5);
-
-}
-.more-trailerscrad-preview{
-}
-.trailercard-title{
+.image-trailercard {
   cursor: pointer;
 }
-.trailercard-title:hover{
+.image-trailercard:hover {
+  filter: brightness(1.5);
+}
+.more-trailerscrad-preview {
+  cursor: pointer;
+}
+.trailercard-title {
+  cursor: pointer;
+}
+.trailercard-title:hover {
   text-decoration: underline;
   font-style: italic;
 }
-
-
+.font-horizentalcard-release-date{
+  align-items: flex-end;
+  
+}
 
 /* ********* footer ************ */
 .footer-body {

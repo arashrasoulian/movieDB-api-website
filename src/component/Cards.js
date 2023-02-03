@@ -255,13 +255,13 @@ export function Trailerscard({
             )}
 
             {release_date && (
-              <small className=" font-horizentalcard-release-date">
+              <small className="align-text-bottom">
                 <span>
                   vote : {vote_average} over {vote_count}
                 </span>
 
-                <span className="text-muted ms-4 ">
-                  release_date : {release_date}{" "}
+                <span className="text-muted ms-sm-5 float-sm-none  float-end">
+                  release_date : {release_date}
                 </span>
               </small>
             )}
